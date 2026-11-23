@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NusantaraMart Seller Center - Business Portal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        header {
+            background-color: #ffffff;
+            padding: 16px 40px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: #0d6efd;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #64748b;
+            margin-left: 24px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #0d6efd;
+        }
+
+        /* Main Container */
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Left Side: Business Info */
+        .hero-text {
+            flex: 1;
+            max-width: 480px;
+        }
+
+        .hero-text h1 {
+            font-size: 32px;
+            color: #0f172a;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #0284c7;
+            border-radius: 50%;
+        }
+
+        /* Right Side: Login Box */
+        .login-card {
+            background: #ffffff;
+            padding: 36px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .login-card h2 {
+            font-size: 22px;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .login-card .subtitle {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 24px;
+        }
+
+        /* Error Alert Box */
+        .error-box {
+            display: none; /* Disembunyikan di awal agar homepage terlihat normal */
+            background-color: #fef2f2;
+            border: 1px solid #f87171;
+            color: #b91c1c;
+            padding: 12px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            align-items: center;
+            gap: 10px;
+            animation: shake 0.3s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0d6efd;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 6px;
+        }
+
+        .btn-login:hover {
+            background-color: #0b5ed7;
+        }
+
+        .btn-login:disabled {
+            background-color: #93c5fd;
+            cursor: not-allowed;
+        }
+
+        .extra-links {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .extra-links a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            color: #94a3b8;
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            NusantaraMart <span>| Online Business Portal</span>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Help Center</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Bagian Kiri: Tampilan Homepage Normal -->
+        <div class="hero-text">
+            <h1>Manage Your Online Business Effortlessly</h1>
+            <p>Access your store dashboard, track customer orders, manage inventory, and view daily sales analytics in one place.</p>
+            <div class="status-badge">
+                <div class="dot"></div>
+                Storefront & Catalog Online
+            </div>
+        </div>
+
+        <!-- Bagian Kanan: Form Login -->
+        <div class="login-card">
+            <h2>Seller Login</h2>
+            <p class="subtitle">Sign in to access your business dashboard</p>
+
+            <!-- Pesan Error Sesuai Dialog -->
+            <div id="errorAlert" class="error-box">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                </svg>
+                <span>Something went wrong. Please try again later.</span>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" id="loginBtn" class="btn-login">Login</button>
+            </form>
+
+            <div class="extra-links">
+                <a href="#">Forgot password?</a> • <a href="#">Register new store</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        © 2026 NusantaraMart Business Solutions. All rights reserved.
+    </footer>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const errorAlert = document.getElementById('errorAlert');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah halaman reload
+
+            // Sembunyikan error lama sejenak jika diklik ulang
+            errorAlert.style.display = 'none';
+            
+            // Efek loading realistis seolah sedang menghubungi server
+            loginBtn.textContent = 'Logging in...';
+            loginBtn.disabled = true;
+
+            setTimeout(() => {
+                // Kembalikan tombol ke semula
+                loginBtn.textContent = 'Login';
+                loginBtn.disabled = false;
+
+                // Munculkan pesan error persis seperti di dialog
+                errorAlert.style.display = 'flex';
+            }, 800); // Delay 0.8 detik agar terlihat natural saat direkam video
+        });
+    </script>
+
+</body>
+</html>
